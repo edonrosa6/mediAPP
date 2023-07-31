@@ -15,6 +15,10 @@ module.exports = {
       maxWidth: {
         "7xl": "95rem",
       },
+      animation: {
+        "bounce-slow": "bounce 1.2s infinite;",
+        "bounce-fast": "bounce 0.9s infinite;",
+      },
     },
   },
   plugins: [],

@@ -1,38 +1,61 @@
 'use client'
 import Post from "@/components/Post";
 import Image from "next/image";
+import Button from "@/components/Button";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import PostNoData from "@/components/PostNoData";
 import NoData from "@/components/NoData";
 import ProfilePicture from "@/components/ProfilePicture";
+import postData from "./data/posts.json";
+import userData from "./data/users.json";
+
 
 export default function HomePage() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(postData.posts);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
+  const [titlePost, setTitlePost] = useState("");
   const router = useRouter();
+  const [loadingPost, setLoadingPost] = useState(false);
+
+  const findUserById = () => {
+    const key = Object.keys(userData.users).find(user => userData.users[user].id === 1)
+    setUser(userData.users[key]);
+  }
 
   useEffect(() => {
-    async function getPosts() {
-      const url = 'https://dummyjson.com/posts?limit=10';
-      const res = await fetch(url);
-      const data = await res.json();
-      setPosts(data.posts);
-      setLoading(false);
-    }
-
-    async function getUser() {
-      const url = 'https://dummyjson.com/users/1';
-      const res = await fetch(url);
-      const data = await res.json();
-      setUser(data);
-      setLoading(false);
-    }
-
-    getPosts();
-    getUser();
+    findUserById()
+    setLoading(false);
   }, [])
+
+  function uuidv4() {
+    return Math.floor(Math.random() * 10000 + 1);
+  };
+
+  const submitPost = () => {
+    setLoadingPost(true);
+
+    const req = {
+      id: uuidv4(),
+      title: titlePost,
+      body: titlePost,
+      userId: 1,
+      tags: [
+          "history",
+          "american",
+          "crime"
+      ],
+      reactions: 2
+    }
+
+    setTimeout(() => {
+      setLoadingPost(false);
+      const tmp = posts;
+      tmp.unshift(req);
+      setPosts([...tmp]);
+    }, 2500);
+  }
 
   return (
     <>
@@ -59,17 +82,42 @@ export default function HomePage() {
             </button>
           </aside>
           <div className="lg:col-span-2">
-            
-              <div className="w-full mt-2">
-                {
-                  posts.map((post) => (
-                    <div key={post.id}>
-                      <Post props={post} />
-                    </div>
-                  ))
-                }
+            <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-2 rounded-md">
+              <div className="w-full">
+                <div className="mb-3">Publica algo</div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    submitPost();
+                  }}>
+                  <textarea value={titlePost} onChange={(e) => setTitlePost(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Escribe lo que piensas..."></textarea>
+                  <div>
+                    <Button title="Publicar" />
+                  </div>
+                </form>
               </div>
-
+            </div>
+            {
+              loadingPost ?
+              <div className="w-full h-12 rounded-md mt-2">
+                <div className="flex items-center h-full justify-center">
+                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce"></div>
+                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-slow ml-2"></div>
+                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-fast ml-2"></div>
+                </div>
+              </div>
+              :<div></div>
+            }
+            
+            <div className="w-full mt-2">
+              {
+                posts.map((post) => (
+                  <div key={post.id}>
+                    <Post props={post} />
+                  </div>
+                ))
+              }
+            </div>
           </div>
           <div className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
             <div className="font-semibold flex items-center mb-4">Notificaciones nuevas <div className="w-2 h-2 rounded-full bg-red-500 ml-2"></div></div>
