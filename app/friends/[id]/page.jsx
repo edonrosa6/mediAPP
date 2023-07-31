@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import usersData from "../../data/users.json";
 import { useEffect, useState } from "react";
@@ -5,11 +6,11 @@ import { useEffect, useState } from "react";
 
 
 function Friend({params}) {
-    const [friend, setFrient] = useState({});
+    const [friend, setFriend] = useState({});
 
     const findUserById = () => {
-        const key = Object.keys(usersData.users).find(user => usersData.users[user].id === params.userId)
-        setUser(usersData.users[key]);
+        const key = Object.keys(usersData.users).find(user => usersData.users[user].id === params.id)
+        setFriend(usersData.users[key]);
     }
 
     useEffect(() => {
