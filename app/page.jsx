@@ -12,7 +12,7 @@ import userData from "./data/users.json";
 
 
 export default function HomePage() {
-  const [posts, setPosts] = useState(postData.posts);
+  const [posts, setPosts] = useState(postData.posts.slice(0, 10));
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [titlePost, setTitlePost] = useState("");
