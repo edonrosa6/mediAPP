@@ -25,12 +25,12 @@ function PostNoData() {
                
             </div>
 
-            <div class="space-y-3 mt-6 animate-pulse">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="h-2 bg-gray-800 rounded col-span-2"></div>
-                        <div class="h-2 bg-gray-800 rounded col-span-1"></div>
+            <div className="space-y-3 mt-6 animate-pulse">
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className="h-2 bg-gray-800 rounded col-span-2"></div>
+                        <div className="h-2 bg-gray-800 rounded col-span-1"></div>
                     </div>
-                    <div class="h-2 bg-gray-800 rounded"></div>
+                    <div className="h-2 bg-gray-800 rounded"></div>
                 </div>
             <div className="mt-2 text-gray-200 text-sm"></div>
             <div className="mt-5 flex"></div>
