@@ -3,8 +3,6 @@ import Image from "next/image";
 import usersData from "../../data/users.json";
 import { useEffect, useState } from "react";
 
-
-
 function Friend({params}) {
     const [friend, setFriend] = useState({});
 

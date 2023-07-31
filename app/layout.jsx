@@ -1,9 +1,7 @@
-'use client'
 import Navigation from "@/components/Navigation";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Script from 'next/script'
-import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
