@@ -89,7 +89,7 @@ export default function HomePage() {
             </button>
           </aside>
           <div className="lg:col-span-2">
-            <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-2 rounded-md">
+            <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-3 rounded-md">
               <div className="w-full">
                 <div className="mb-3">Publica algo</div>
                 <form
