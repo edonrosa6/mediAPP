@@ -2,8 +2,10 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
-import Image from 'next/image';
 import ProfilePicture from './ProfilePicture';
+import usersData from "./../app/data/users.json";
+import Image from 'next/image';
+import Logo from "../public/mediAPP-logo.png";
 
 function Navigation({props}) {
     const pathname = usePathname();
@@ -11,15 +13,12 @@ function Navigation({props}) {
     const [user, setUser] = React.useState(null);
 
     useEffect(() => {
-      async function getUser() {
-          const url = 'https://dummyjson.com/users/1';
-          const res = await fetch(url);
-          const data = await res.json();
-          setUser(data);
-          console.log(data);
-      }
+        const findUserById = () => {
+            const key = Object.keys(usersData.users).find(user => usersData.users[user].id === 1)
+            setUser(usersData.users[key]);
+        }
       
-      getUser();
+        findUserById();
   }, [])
   
 
@@ -28,9 +27,9 @@ function Navigation({props}) {
             <nav className="border-b border-b-gray-900 bg-gradient-to-b from-gray-900">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
-                        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                        <div className="flex items-center justify-between py-3 md:py-3 md:block">
                             <Link href="/">
-                                <h2 className=" text-white text-2xl font-bold">mediAPP</h2>
+                                <Image alt="" height={50} width={120} src={Logo} />
                             </Link>
                          
                             <div className="md:hidden">
@@ -89,7 +88,16 @@ function Navigation({props}) {
                                     <Link href="/friends" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-users fa-xl"></i></Link>
                                 </li>     
                                 <li className={pathname == "/tools" ? "h-9 w-12 items-center border-b-2 border-b-indigo-500 block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" : "text-gray-600 hover:text-blue-600"}>
-                                    <Link href="/notifications" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-bell fa-xl"></i></Link>
+                                    <Link href="/notifications" className="block mr-auto text-center ml-auto">
+                                        <div className="flex items-start">
+                                            <div>
+                                                <i className="fa-solid fa-bell fa-xl"></i>
+                                            </div>
+                                            <div className="w-4 h-4 font-semibold text-[10px] bg-red-500 rounded-full text-white">
+                                                3
+                                            </div>
+                                        </div>
+                                    </Link>
                                 </li>   
                                 <li>
                                     <Link href="/friends/1" className="block mr-auto text-center ml-auto">

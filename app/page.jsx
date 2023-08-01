@@ -9,6 +9,8 @@ import NoData from "@/components/NoData";
 import ProfilePicture from "@/components/ProfilePicture";
 import postData from "./data/posts.json";
 import userData from "./data/users.json";
+import Swal from "sweetalert2";
+import { successfullMessage } from "@/components/Popup";
 
 
 export default function HomePage() {
@@ -54,8 +56,13 @@ export default function HomePage() {
       const tmp = posts;
       tmp.unshift(req);
       setPosts([...tmp]);
-    }, 2500);
+      setTitlePost("");
+
+      successfullMessage("Se ha creado la publicación.");
+    }, 1000);
+
   }
+
 
   return (
     <>
@@ -82,7 +89,7 @@ export default function HomePage() {
             </button>
           </aside>
           <div className="lg:col-span-2">
-            <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-2 rounded-md">
+            <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-3 rounded-md">
               <div className="w-full">
                 <div className="mb-3">Publica algo</div>
                 <form
@@ -90,7 +97,7 @@ export default function HomePage() {
                     e.preventDefault();
                     submitPost();
                   }}>
-                  <textarea value={titlePost} onChange={(e) => setTitlePost(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Escribe lo que piensas..."></textarea>
+                  <textarea required value={titlePost} onChange={(e) => setTitlePost(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Escribe lo que piensas..."></textarea>
                   <div>
                     <Button title="Publicar" />
                   </div>
@@ -99,14 +106,14 @@ export default function HomePage() {
             </div>
             {
               loadingPost ?
-              <div className="w-full h-12 rounded-md mt-2">
-                <div className="flex items-center h-full justify-center">
-                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce"></div>
-                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-slow ml-2"></div>
-                  <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-fast ml-2"></div>
+                <div className="w-full h-12 rounded-md mt-2">
+                  <div className="flex items-center h-full justify-center">
+                    <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce"></div>
+                    <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-slow ml-2"></div>
+                    <div className="bg-gray-300 w-2 h-2 rounded-full animate-bounce-fast ml-2"></div>
+                  </div>
                 </div>
-              </div>
-              :<div></div>
+              : <div></div>
             }
             
             <div className="w-full mt-2">
@@ -119,36 +126,45 @@ export default function HomePage() {
               }
             </div>
           </div>
-          <div className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
-            <div className="font-semibold flex items-center mb-4">Notificaciones nuevas <div className="w-2 h-2 rounded-full bg-red-500 ml-2"></div></div>
+          <aside className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
+            <div className="font-semibold flex items-center mb-4">
+              Notificaciones nuevas
+              <span className="w-2 h-2 rounded-full bg-red-500 ml-2"></span>
+            </div>
            
             <div className="flex items-start">
-              <ProfilePicture urlImage={user.image} />
               <div>
-                <h3 className="text-sm ml-3 text-gray-200">Nombre</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-2">Te ha dado like en tu foto de perfil</p>
+                <ProfilePicture width={35} height={35} urlImage={user.image} />
+              </div>
+              <div>
+                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Edson Rosales</h3>
+                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
               </div>
             </div>
             <hr className="border-gray-800 my-3"></hr>
 
             <div className="flex items-start">
-              <ProfilePicture urlImage={user.image} />
               <div>
-                <h3 className="text-sm ml-3 text-gray-200">Titulo de ejemplo</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
+                <ProfilePicture width={35} height={35} urlImage={user.image} />
+              </div>
+              <div>
+                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Edson Rosales</h3>
+                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
               </div>
             </div>
             <hr className="border-gray-800 my-3"></hr>
 
             <div className="flex items-start">
-              <ProfilePicture urlImage={user.image} />
               <div>
-                <h3 className="text-sm ml-3 text-gray-200">Titulo de ejemplo</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
+                <ProfilePicture width={35} height={35} urlImage={user.image} />
+              </div>
+              <div>
+                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Jesus Lugo</h3>
+                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
               </div>
             </div>
 
-          </div>
+          </aside>
         </div>  
       : 
         <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
