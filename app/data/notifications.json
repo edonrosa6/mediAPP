@@ -1,0 +1,191 @@
+{
+    "notifications": [
+        {
+            "id": 1,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-01-2023",
+            "postId": 100,
+            "iconName": "heart",
+            "user": {
+                "id": 9,
+                "username": "eburras1q"
+            }
+        },
+        {
+            "id": 2,
+            "title": "Ha comentado tu publicación.",
+            "date": "07-29-2023",
+            "iconName": "comment",
+            "postId": 61,
+            "user": {
+                "id": 1,
+                "username": "jissetts"
+            }
+        },
+        {
+            "id": 3,
+            "title": "Compartió tu publicación.",
+            "date": "08-01-2023",
+            "postId": 8,
+            "iconName": "share",
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 4,
+            "title": "Compartió tu publicación.",
+            "date": "07-31-2023",
+            "postId": 8,
+            "iconName": "share",
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 5,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-08-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 6,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-30-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 7,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-07-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 8,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-07-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 9,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-07-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 10,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-10-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 11,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-10-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 12,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-12-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 13,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-22-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 14,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-22-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 15,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-06-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 16,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-02-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        },
+        {
+            "id": 17,
+            "title": "Ha dado like a tu publicación.",
+            "date": "07-04-2023",
+            "iconName": "heart",
+            "postId": 8,
+            "user": {
+                "id": 2,
+                "username": "bleveragei"
+            }
+        }
+    ]
+}
