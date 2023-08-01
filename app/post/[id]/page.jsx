@@ -6,6 +6,7 @@ import usersData from "../../data/users.json";
 import postsData from "../../data/posts.json";
 import dataComments from "../../data/comments.json";
 import { useEffect, useState } from "react";
+import { successfullMessage } from "@/components/Popup";
 
 function DetailsPost({params}) { 
     const fecha = new Date();
@@ -69,7 +70,8 @@ function DetailsPost({params}) {
             const tmp = comments;
             tmp.unshift(req);
             setFilterComments([...tmp]);
-        }, 2500);
+            setComment("");
+        }, 250);
     }
 
     const likePost = () => { 
@@ -125,10 +127,13 @@ function DetailsPost({params}) {
             </div>
 
             <div>
-                <textarea value={comment} onChange={(e) => setComment(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Comenta algo..."></textarea>
-                <div>
-                    <Button func={sendComment} title="Comentar" iconName="fa-comment" />
-                </div>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    sendComment();
+                }}>
+                    <textarea required value={comment} onChange={(e) => setComment(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Comenta algo..."></textarea>
+                    <Button title="Comentar" iconName="fa-comment" />
+                </form>
             </div>
 
 
@@ -143,7 +148,7 @@ function DetailsPost({params}) {
             </div>
 
             {
-                showMoreComments 
+                showMoreComments && filterComments.length > 4
                     ? <button className="mb-6 py-2 px-2 bg-gray-800 w-full rounded-md hover:bg-gray-700 font-semibold" onClick={showAllComments}>Más comentarios</button> 
                     : <div></div>
             }
