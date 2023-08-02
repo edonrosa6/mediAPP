@@ -10,7 +10,7 @@ function PostNoData() {
                         <div className="bg-gray-800 rounded-full w-12 h-12"></div>
                     </div>
                     <div>
-                        <button onClick={() => {router.push("/friends/" + user.id)}}>
+                        <button>
                             <h2 className="text-gray-200 text-sm font-semibold"></h2>
                         </button>
                         <p className="text-gray-400 text-xs mt-0">

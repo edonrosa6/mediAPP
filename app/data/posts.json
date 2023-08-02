@@ -10,7 +10,8 @@
                 "american",
                 "crime"
             ],
-            "reactions": 2
+            "reactions": 2,
+            "date": "07-31-2023"
         },
         {
             "id": 2,
@@ -22,7 +23,8 @@
                 "fiction",
                 "english"
             ],
-            "reactions": 2
+            "reactions": 2,
+            "date": "07-31-2023"
         },
         {
             "id": 4,
@@ -34,7 +36,8 @@
                 "english",
                 "american"
             ],
-            "reactions": 1
+            "reactions": 1,
+            "date": "07-31-2023"
         },
         {
             "id": 7,
@@ -45,7 +48,8 @@
                 "magical",
                 "crime"
             ],
-            "reactions": 0
+            "reactions": 0,
+            "date": "07-31-2023"
         },
         {
             "id": 10,
@@ -57,7 +61,8 @@
                 "magical",
                 "history"
             ],
-            "reactions": 4
+            "reactions": 4,
+            "date": "07-31-2023"
         },
         {
             "id": 11,
@@ -69,7 +74,8 @@
                 "american",
                 "history"
             ],
-            "reactions": 5
+            "reactions": 5,
+            "date": "07-31-2023"
         },
         {
             "id": 12,
@@ -80,7 +86,8 @@
                 "love",
                 "english"
             ],
-            "reactions": 7
+            "reactions": 7,
+            "date": "07-31-2023"
         },
         {
             "id": 14,
@@ -92,7 +99,8 @@
                 "english",
                 "love"
             ],
-            "reactions": 0
+            "reactions": 0,
+            "date": "07-06-2023"
         },
         {
             "id": 15,
@@ -104,7 +112,8 @@
                 "history",
                 "crime"
             ],
-            "reactions": 1
+            "reactions": 1,
+            "date": "07-10-2023"
         },
         {
             "id": 17,
@@ -116,7 +125,8 @@
                 "magical",
                 "english"
             ],
-            "reactions": 0
+            "reactions": 0,
+            "date": "07-11-2023"
         },
         {
             "id": 18,
@@ -128,7 +138,8 @@
                 "french",
                 "love"
             ],
-            "reactions": 3
+            "reactions": 3,
+            "date": "07-13-2023"
         },
         {
             "id": 22,
@@ -140,7 +151,8 @@
                 "love",
                 "history"
             ],
-            "reactions": 6
+            "reactions": 6,
+            "date": "07-14-2023"
         },
         {
             "id": 23,
@@ -151,7 +163,8 @@
                 "crime",
                 "english"
             ],
-            "reactions": 4
+            "reactions": 4,
+            "date": "07-20-2023"
         },
         {
             "id": 25,
@@ -163,7 +176,8 @@
                 "history",
                 "french"
             ],
-            "reactions": 3
+            "reactions": 3,
+            "date": "07-21-2023"
         },
         {
             "id": 26,
@@ -175,7 +189,8 @@
                 "mystery",
                 "crime"
             ],
-            "reactions": 7
+            "reactions": 7,
+            "date": "07-22-2023"
         },
         {
             "id": 27,
@@ -187,7 +202,8 @@
                 "classic",
                 "love"
             ],
-            "reactions": 4
+            "reactions": 4,
+            "date": "07-25-2023"
         },
         {
             "id": 28,
@@ -198,7 +214,8 @@
                 "crime",
                 "love"
             ],
-            "reactions": 2
+            "reactions": 2,
+            "date": "07-28-2023"
         },
         {
             "id": 30,
@@ -210,7 +227,8 @@
                 "love",
                 "fiction"
             ],
-            "reactions": 0
+            "reactions": 0,
+            "date": "07-27-2023"
         },
         {
             "id": 47,
@@ -222,7 +240,8 @@
                 "love",
                 "fiction"
             ],
-            "reactions": 0
+            "reactions": 0,
+            "date": "07-29-2023"
         }
     ]
 }

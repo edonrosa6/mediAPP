@@ -1,17 +1,53 @@
 'use client'
-import Post from "@/components/Post";
-import Image from "next/image";
-import Button from "@/components/Button";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
+import Post from "@/components/Post";
+import Button from "@/components/Button";
 import PostNoData from "@/components/PostNoData";
 import NoData from "@/components/NoData";
 import ProfilePicture from "@/components/ProfilePicture";
-import postData from "./data/posts.json";
-import userData from "./data/users.json";
-import Swal from "sweetalert2";
+import Notification from "@/components/Notification";
 import { successfullMessage } from "@/components/Popup";
 
+import postData from "./data/posts.json";
+import userData from "./data/users.json";
+import notificationsData from "./data/notifications.json";
+import messagesData from "./data/messages.json";
+import Message from "@/components/Message";
+
+const homePageLoading = () => {
+  return (
+    <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
+      <aside className="hidden sticky top-20 lg:block px-6 rounded-md mt-2 mb-2 h-screen py-5 bg-gray-900">
+        <button>
+          <div className="animate-pulse bg-gray-800 rounded-full w-12 h-12"></div>
+          <div className="ml-3 font-semibold w-full"></div>
+        </button>
+
+        <hr className="my-3 border-gray-800"></hr>
+        <NoData />
+        <NoData />
+        <NoData />
+      </aside>
+      <div className="lg:col-span-2 w-full">
+          <div className="w-full mt-3">
+            <PostNoData />
+            <PostNoData />
+            <PostNoData />
+            <PostNoData />
+            <PostNoData />
+          </div>
+      </div>
+      <div className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-4">
+        <NoData />
+        <NoData />
+        <NoData />
+      </div>
+    </div>  
+  )
+}
 
 export default function HomePage() {
   const [posts, setPosts] = useState(postData.posts.slice(0, 10));
@@ -20,6 +56,8 @@ export default function HomePage() {
   const [titlePost, setTitlePost] = useState("");
   const router = useRouter();
   const [loadingPost, setLoadingPost] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const messages = messagesData.messages;
 
   const findUserById = () => {
     const key = Object.keys(userData.users).find(user => userData.users[user].id === 1)
@@ -27,13 +65,14 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    findUserById()
+    setNotifications(notificationsData.notifications.slice(0, 4));
+    findUserById();
     setLoading(false);
   }, [])
 
   function uuidv4() {
     return Math.floor(Math.random() * 10000 + 1);
-  };
+  }
 
   const submitPost = () => {
     setLoadingPost(true);
@@ -48,7 +87,8 @@ export default function HomePage() {
           "american",
           "crime"
       ],
-      reactions: 2
+      reactions: 0,
+      date: new Date()
     }
 
     setTimeout(() => {
@@ -63,13 +103,12 @@ export default function HomePage() {
 
   }
 
-
   return (
     <>
     {
       !loading ?
         <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
-          <aside className="hidden sticky top-20 lg:block px-6 rounded-md mt-2 mb-2 h-screen py-5 bg-gray-900">
+          <aside className="hidden sticky top-20 lg:block px-6 rounded-md mt-2 mb-2 h-[90vh] py-5 bg-gray-900">
             <button onClick={() => router.push('/friends/1')} className="flex items-center hover:bg-gray-700 w-full rounded-md px-3 py-2">
               <ProfilePicture urlImage={user.image} />
               <div className="ml-3 font-semibold">
@@ -126,74 +165,40 @@ export default function HomePage() {
               }
             </div>
           </div>
-          <aside className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
+          <aside className="hidden overflow-auto sticky top-20 h-[90vh] lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
             <div className="font-semibold flex items-center mb-4">
               Notificaciones nuevas
               <span className="w-2 h-2 rounded-full bg-red-500 ml-2"></span>
             </div>
-           
-            <div className="flex items-start">
-              <div>
-                <ProfilePicture width={35} height={35} urlImage={user.image} />
-              </div>
-              <div>
-                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Edson Rosales</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
-              </div>
-            </div>
-            <hr className="border-gray-800 my-3"></hr>
+                
+            {
+              notifications.map((notification) => (
+                <div key={notification.id}>
+                  <Notification notification={notification} user={user} />
+                </div>
+              ))
+            }
+            
+            {
+              notifications.length > 3 
+                ? <button onClick={() => router.push("/notifications")} className="bg-gray-800 rounded-md px-2 py-2 text-sm w-full hover:bg-gray-700 text-center font-semibold">Ver todas</button>
+                : null
+            }
 
-            <div className="flex items-start">
-              <div>
-                <ProfilePicture width={35} height={35} urlImage={user.image} />
-              </div>
-              <div>
-                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Edson Rosales</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
-              </div>
-            </div>
-            <hr className="border-gray-800 my-3"></hr>
-
-            <div className="flex items-start">
-              <div>
-                <ProfilePicture width={35} height={35} urlImage={user.image} />
-              </div>
-              <div>
-                <h3 className="text-xs ml-3 text-gray-200 font-semibold">Jesus Lugo</h3>
-                <p className="text-xs ml-3 text-gray-400 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptates?</p>
-              </div>
+            <div className="my-5 font-semibold flex items-center mb-4">
+              Mensajes nuevos
             </div>
 
+            {
+              messages.map((message) => (
+                <div key={message.id}>
+                  <Message message={message} />
+                </div>
+              ))
+            }
           </aside>
         </div>  
-      : 
-        <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
-          <aside className="hidden sticky top-20 lg:block px-6 rounded-md mt-2 mb-2 h-screen py-5 bg-gray-900">
-            <button>
-              <div className="animate-pulse bg-gray-800 rounded-full w-12 h-12"></div>
-              <div className="ml-3 font-semibold w-full"></div>
-            </button>
-
-            <hr className="my-3 border-gray-800"></hr>
-            <NoData />
-            <NoData />
-            <NoData />
-          </aside>
-          <div className="lg:col-span-2 w-full">
-              <div className="w-full mt-2">
-                <PostNoData />
-                <PostNoData />
-                <PostNoData />
-                <PostNoData />
-                <PostNoData />
-              </div>
-          </div>
-          <div className="hidden sticky top-20 h-screen lg:block bg-gray-900 rounded-lg mt-2 py-5 px-4">
-            <NoData />
-            <NoData />
-            <NoData />
-          </div>
-        </div>  
+      : homePageLoading()
       }
     </>
   );

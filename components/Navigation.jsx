@@ -6,8 +6,9 @@ import ProfilePicture from './ProfilePicture';
 import usersData from "./../app/data/users.json";
 import Image from 'next/image';
 import Logo from "../public/mediAPP-logo.png";
+import notificationsData from "./../app/data/notifications.json";
 
-function Navigation({props}) {
+function Navigation() {
     const pathname = usePathname();
     const [navbar, setNavbar] = React.useState(false);
     const [user, setUser] = React.useState(null);
@@ -29,7 +30,7 @@ function Navigation({props}) {
                     <div>
                         <div className="flex items-center justify-between py-3 md:py-3 md:block">
                             <Link href="/">
-                                <Image alt="" height={50} width={120} src={Logo} />
+                                <Image alt="" height={"auto"} width={120} src={Logo} />
                             </Link>
                          
                             <div className="md:hidden">
@@ -94,7 +95,7 @@ function Navigation({props}) {
                                                 <i className="fa-solid fa-bell fa-xl"></i>
                                             </div>
                                             <div className="w-4 h-4 font-semibold text-[10px] bg-red-500 rounded-full text-white">
-                                                3
+                                                {notificationsData.notifications.length}
                                             </div>
                                         </div>
                                     </Link>

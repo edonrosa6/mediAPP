@@ -6,7 +6,6 @@ import usersData from "../../data/users.json";
 import postsData from "../../data/posts.json";
 import dataComments from "../../data/comments.json";
 import { useEffect, useState } from "react";
-import { successfullMessage } from "@/components/Popup";
 
 function DetailsPost({params}) { 
     const fecha = new Date();
@@ -16,7 +15,6 @@ function DetailsPost({params}) {
     const [user, setUser] = useState(null);
     const [post, setPost] = useState(null);
     const [showMoreComments, setShowMoreComments] = useState(true);
-    const [loadingComment, setLoadingComment] = useState(false);
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [animationPing, setAnimationPing] = useState(false);
@@ -34,12 +32,13 @@ function DetailsPost({params}) {
     const getPostById = () => {
         const key = Object.keys(postsData.posts).find(x => postsData.posts[x].id === parseInt(params.id))
         setPost(postsData.posts[key]);
+        setLikes(postsData.posts[key].reactions);
         findUserById(postsData.posts[key].userId);
     }
 
     const getCommentsByPost = () => {
         const data = dataComments.comments.filter(e => e.postId === parseInt(params.id));
-        setComments(data.slice(0, 5));
+        setComments(data);
         setFilterComments(data);
     }
 
@@ -66,7 +65,6 @@ function DetailsPost({params}) {
         }
 
         setTimeout(() => {
-            setLoadingComment(false);
             const tmp = comments;
             tmp.unshift(req);
             setFilterComments([...tmp]);
@@ -112,6 +110,7 @@ function DetailsPost({params}) {
                 <div className="mt-2 text-gray-200 text-sm">{post?.body}</div>
                 <div className="mt-5 flex">
                     <button onClick={likePost} className="flex items-center rounded-md hover:bg-gray-700 px-3 py-2">
+                        <i className={liked && animationPing ? "absolute fa-solid fa-heart text-red-500" : liked ? "absolute fa-solid fa-heart text-red-500" : "absolute fa-regular fa-heart text-red-500"}></i> 
                         <i className={liked && animationPing ? "animate-ping fa-solid fa-heart text-red-500" : liked ? "fa-solid fa-heart text-red-500" : "fa-regular fa-heart text-red-500"}></i> 
                         <p className="text-xs font-bold ml-1 text-gray-200">{likes}</p>
                     </button>
