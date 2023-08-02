@@ -87,7 +87,8 @@ export default function HomePage() {
           "american",
           "crime"
       ],
-      reactions: 2
+      reactions: 0,
+      date: new Date()
     }
 
     setTimeout(() => {
