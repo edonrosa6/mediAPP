@@ -127,6 +127,7 @@ export default function HomePage() {
               </div>
             </button>
           </aside>
+
           <div className="lg:col-span-2">
             <div className="px-4 py-4 bg-gradient-to-t from-gray-900 to-gray-800 mt-3 rounded-md">
               <div className="w-full">
@@ -165,7 +166,8 @@ export default function HomePage() {
               }
             </div>
           </div>
-          <aside className="hidden overflow-auto sticky top-20 h-[90vh] lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
+
+          <aside className="hidden -z-10 overflow-auto sticky top-20 h-[90vh] lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
             <div className="font-semibold flex items-center mb-4">
               Notificaciones nuevas
               <span className="w-2 h-2 rounded-full bg-red-500 ml-2"></span>

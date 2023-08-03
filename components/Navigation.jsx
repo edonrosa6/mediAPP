@@ -7,6 +7,7 @@ import usersData from "./../app/data/users.json";
 import Image from 'next/image';
 import Logo from "../public/mediAPP-logo.png";
 import notificationsData from "./../app/data/notifications.json";
+import DropdownMenuProfile from './DropdownMenuProfile';
 
 function Navigation() {
     const pathname = usePathname();
@@ -79,16 +80,16 @@ function Navigation() {
                         >                        
 
                             <ul className="items-center justify-center space-y-8 gap-2 md:flex md:space-x-6 md:space-y-0">
-                                <li className={pathname == "/" ? "h-9 w-12 items-center border-b-2 border-b-indigo-500 block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" : "text-gray-600 hover:text-blue-600"}>
+                                <li className={pathname == "/" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
                                     <Link href="/" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-home fa-xl"></i></Link>
                                 </li>
-                                <li className={pathname == "/profile" ? "h-9 w-12 items-center border-b-2 border-b-indigo-500 block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" : "text-gray-600 hover:text-blue-600"}>
+                                <li className={pathname == "/profile" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
                                     <Link href="/profile" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-user fa-xl"></i></Link>
                                 </li>
-                                <li className={pathname == "/friends" ? "h-9 w-12 items-center border-b-2 border-b-indigo-500 block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" : "text-gray-600 hover:text-blue-600"}>
+                                <li className={pathname == "/friends" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
                                     <Link href="/friends" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-users fa-xl"></i></Link>
                                 </li>     
-                                <li className={pathname == "/tools" ? "h-9 w-12 items-center border-b-2 border-b-indigo-500 block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" : "text-gray-600 hover:text-blue-600"}>
+                                <li className={pathname == "/notifications" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
                                     <Link href="/notifications" className="block mr-auto text-center ml-auto">
                                         <div className="flex items-start">
                                             <div>
@@ -101,13 +102,11 @@ function Navigation() {
                                     </Link>
                                 </li>   
                                 <li>
-                                    <Link href="/friends/1" className="block mr-auto text-center ml-auto">
-                                        {
-                                            user ?
-                                                <ProfilePicture hover={true} width={45} height={45} urlImage={user.image} />
-                                            :   <div className="w-12 h-12 bg-gray-800 rounded-full"></div>
-                                        }
-                                    </Link>
+                                    {
+                                        user ?
+                                            <DropdownMenuProfile user={user} />
+                                        :   <div className="w-12 h-12 bg-gray-800 rounded-full"></div>
+                                    }
                                 </li>   
                             </ul>
                         </div>

@@ -1,24 +1,35 @@
+"use client"
 import Card from "@/components/Card";
+import usersData from "../data/users.json";
+import { useState } from "react";
 
-async function fetchFriends() {
-    const url = "https://dummyjson.com/users";
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.users;
-}
+function Friends() {
+    const [friends, setFriends] = useState(usersData.users);
 
-async function Friends() {
-    const friends = await fetchFriends();
+    const sendData = (friend) => {
+        setFriends(friends.filter(item => item.id !== friend.id))
+    }
 
     return (
-        <div className="grid mt-5 mb-5 grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1">
+        <div className="w-full flex items-center justify-center">
             {
-                friends.map((friend) => (
-                    <div key={friend.id}>            
-                        <Card props={friend} />
+                friends.length > 0 ?
+                <div>
+                    <div className="text-gray-200 font-semibold text-xl my-4">Amigos que quizá conozcas</div>
+
+                    <div className="grid mb-5 grid-cols-2 max-w-3xl md:grid-cols-4 lg:grid-cols-5 gap-1">
+                        {
+                            friends.map((friend) => (
+                                <div className="hover:shadow-2xl" key={friend.id}>            
+                                    <Card sendData={sendData} props={friend} />
+                                </div>
+                            ))
+                        }
                     </div>
-                ))
+                </div>
+                : <div className="text-gray-400 mt-5">No se encontraron amigos disponibles.</div>
             }
+           
         </div>
     )
 }
