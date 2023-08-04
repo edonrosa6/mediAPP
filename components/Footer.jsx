@@ -18,7 +18,7 @@ export default function Footer() {
     }, [])
 
     return (
-        <footer class="border border-gray-800 backdrop-blur-md mt-3 md:hidden block absolute bottom-0 sticky w-full h-16  bg-gradient-to-t from-gray-900
+        <footer className="border border-gray-800 backdrop-blur-md mt-3 md:hidden block absolute bottom-0 sticky w-full h-16  bg-gradient-to-t from-gray-900
             fixed left-0 bottom-0 rounded-full bottom-3
             flex justify-center items-center
             text-gray-200 text-2xl"

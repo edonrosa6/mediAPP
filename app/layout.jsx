@@ -20,8 +20,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Navigation />
         <div className="min-h-screen flex flex-col justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-          {children}
-          <Footer />
+          <div className="w-full">
+            {children}
+            <Footer />
+          </div>
         </div>
       </body>
     </html>
