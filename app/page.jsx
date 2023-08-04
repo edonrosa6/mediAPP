@@ -50,8 +50,8 @@ const homePageLoading = () => {
 }
 
 export default function HomePage() {
-  const [posts, setPosts] = useState(postData.posts.slice(0, 10));
   const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState(postData.posts.slice(0, 10));
   const [user, setUser] = useState({});
   const [titlePost, setTitlePost] = useState("");
   const router = useRouter();
@@ -104,7 +104,7 @@ export default function HomePage() {
   }
 
   return (
-    <>
+    <div>
     {
       !loading ?
         <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
@@ -167,7 +167,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <aside className="hidden -z-10 overflow-auto sticky top-20 h-[90vh] lg:block bg-gray-900 rounded-lg mt-2 py-5 px-5">
+          <aside className="z-0 overflow-auto hidden lg:block sticky h-[90vh] bg-gray-900 mt-2 py-5 px-5 top-20 rounded-lg ">
             <div className="font-semibold flex items-center mb-4">
               Notificaciones nuevas
               <span className="w-2 h-2 rounded-full bg-red-500 ml-2"></span>
@@ -180,7 +180,7 @@ export default function HomePage() {
                 </div>
               ))
             }
-            
+              
             {
               notifications.length > 3 
                 ? <button onClick={() => router.push("/notifications")} className="bg-gray-800 rounded-md px-2 py-2 text-sm w-full hover:bg-gray-700 text-center font-semibold">Ver todas</button>
@@ -202,6 +202,6 @@ export default function HomePage() {
         </div>  
       : homePageLoading()
       }
-    </>
+    </div>
   );
 }
