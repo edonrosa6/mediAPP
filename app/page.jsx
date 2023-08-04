@@ -104,7 +104,7 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <div className="w-full">
     {
       !loading ?
         <div className="grid w-full grid-cols lg:grid-cols-4 flex gap-4">
