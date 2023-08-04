@@ -11,7 +11,7 @@ function ProfilePicture({urlImage, width, height, hover, backgroundColor}) {
         <>
             {
                 urlImage ?
-                    <Image alt="" src={urlImage} width={width ? width : 40} height={height ? height : 40} className={hover ? `hover:bg-blue-500 rounded-full bg-${bgColor()}` : `bg-${bgColor()} rounded-full`} />
+                    <Image alt="" src={urlImage} width={width ? width : 40} height={height ? height : 40} className={hover ? `hover:bg-blue-500 rounded-full bg-${bgColor()}` : `bg-${bgColor()} rounded-full hover:bg-opacity-75`} />
                     : <div className={`rounded-full bg-${bgColor()} w-[40px] h-[40px]`}></div>
             }
         </>

@@ -1,8 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
 
-
-
 function Comments({commentId}) {
     const [comments, setComments] = useState([]);
 

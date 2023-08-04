@@ -1,10 +1,10 @@
 'use client'
+
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
-import ProfilePicture from './ProfilePicture';
-import usersData from "./../app/data/users.json";
 import Image from 'next/image';
+import usersData from "./../app/data/users.json";
 import Logo from "../public/mediAPP-logo.png";
 import notificationsData from "./../app/data/notifications.json";
 import DropdownMenuProfile from './DropdownMenuProfile';
@@ -25,7 +25,7 @@ function Navigation() {
   
 
     return (
-        <header className="sticky top-0 backdrop-blur-sm">
+        <header className="sticky top-0 backdrop-blur-sm z-50">
             <nav className="border-b border-b-gray-900 bg-gradient-to-b from-gray-900">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
@@ -34,7 +34,7 @@ function Navigation() {
                                 <Image alt="" height={"auto"} width={120} src={Logo} />
                             </Link>
                          
-                            <div className="md:hidden">
+                            {/* <div className="md:hidden">
                                 <button
                                     className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
                                     onClick={() => setNavbar(!navbar)}
@@ -69,7 +69,7 @@ function Navigation() {
                                         </svg>
                                     )}
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div>
@@ -111,6 +111,7 @@ function Navigation() {
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </nav>
         </header>

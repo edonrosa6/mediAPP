@@ -6,8 +6,15 @@ import usersData from "../../data/users.json";
 
 import ProfilePicture from "@/components/ProfilePicture";
 
+import moment from "moment";
+import "moment/locale/es";
+import Modal from "@/components/Modal";
+
 function ProfileDetails({params}) {
     const [friend, setFriend] = useState({});
+    const [birthDate, setBirthDate] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [showImage, setShowImage] = useState(false);
 
     const findUserById = () => {
         const key = Object.keys(usersData.users).find(user => usersData.users[user].id === parseInt(params.id))
@@ -16,80 +23,100 @@ function ProfileDetails({params}) {
 
     useEffect(() => {
         findUserById();
+        setBirthDate(moment(friend.birthDate, "YYYY-MM-DD").format("LL"));
+        setLoading(false);
     }, [])
 
-    return (
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 lg:gap-4">
-            <div className="col-span-2 border border-gray-800 mt-6 pb-12 rounded-[1.6rem] shadow-2xl bg-gray-800">
-                <div>
-                    <div className="bg-gray-700 h-[12rem] w-full rounded-t-3xl border border-gray-700"></div>
+    const showModal = () => {
+        setShowImage((prev) => !prev);
+    }
 
-                    <div className="px-10 -mt-20">
-                        <div className="mb-3 flex items-start justify-start">
-                            <div className="rounded-full border-[0.3rem] border-gray-800">
-                                <ProfilePicture width={140} height={140} urlImage={friend.image} backgroundColor="blue" />
+    return (
+
+        <>
+            {
+                !loading ?
+                <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    {
+                        showImage ? <Modal showModalImage={showModal} user={friend} /> : null
+                    }
+                    <div className="col-span-3 border border-gray-700 mt-6 pb-12 rounded-xl shadow-2xl bg-gray-800">
+                        <div>
+                            <div className="bg-gray-700 h-[12rem] w-full rounded-t-xl border border-gray-700"></div>
+        
+                            <div className="px-10 -mt-20">
+                                <button onClick={() => {showModal()}}  className="mb-3 flex items-start justify-start">
+                                    <div className="rounded-full border-[0.3rem] border-gray-800">
+                                        <ProfilePicture width={140} height={140} urlImage={friend.image} backgroundColor="blue" />
+                                    </div>
+                                </button>
+                                <div className="font-semibold text-white text-[1.3rem] text-base">{friend?.firstName} {friend?.lastName}</div>
+                                <div className="-mt-1">{friend?.company?.department}</div>
+                                <div className="mt-1 text-gray-500 text-sm">{friend?.address?.city}{friend?.address?.state ? ", " : ""}{friend?.address?.state}</div>
+        
+                                <div className="flex flex-col md:flex-row gap-2">
+                                    <button className="transition duration-300 ease-in-out bg-blue-600 hover:bg-blue-500 px-4 text-gray-100 py-2 rounded-full text-sm mt-3 font-semibold">
+                                        <i className="fa-solid fa-user-plus mr-2"></i>
+                                        Añadir a mis amigos
+                                    </button>
+        
+                                    <div className="flex gap-1 items-center justify-between">
+                                        <button className="w-full transition duration-300 ease-in-out bg-gray-600 hover:bg-gray-500 px-4 py-2 text-gray-100 rounded-full text-sm mt-3 font-semibold">
+                                            <i className="fa-solid fa-paper-plane mr-2"></i>
+                                            Enviar mensaje
+                                        </button>
+                                        <button className="transition duration-300 ease-in-out bg-gray-600 hover:bg-gray-500 px-4 py-2 text-gray-100 rounded-full text-sm mt-3 font-semibold">
+                                            <i className="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+        
+                    <div className="md:col-span-1 col-span-3 border border-gray-700 px-12 py-6 rounded-xl bg-gray-800 shadow-2xl">
+                        <div className="font-semibold text-lg">Más Información</div>
+        
+                        <div className="flex flex-col gap-1 mt-3">
+                            <div className="text-sm flex items-center gap-2 text-gray-400">
+                                <div>
+                                    <i className="fa-solid fa-graduation-cap w-4 h-2"></i>
+                                </div>
+                                <div>
+                                    Estudió en {friend?.university}
+                                </div>
+                            </div>
+        
+                            <div className="text-sm flex items-center gap-2 text-gray-400">
+                                <div>     
+                                    <i className="fa-solid fa-briefcase w-4 h-2"></i>
+                                </div>
+                                <div>
+                                    Trabaja en {friend?.company?.name}
+                                </div>
+                            </div>
+        
+                            <div className="text-sm flex items-center gap-2 text-gray-400">
+                                <div>
+                                    <i className="fa-solid fa-cake-candles w-4 h-2"></i>
+                                </div>
+                                <div>
+                                    Nació en: {birthDate}
+                                </div>
                             </div>
                         </div>
-                        <div className="font-semibold text-white text-2xl text-base">{friend?.firstName} {friend?.lastName}</div>
-                        <div className="-mt-1">{friend?.company?.department}</div>
-                        <div className="mt-1 text-gray-500 text-sm">{friend?.address?.city}{friend?.address?.state ? ", " : ""}{friend?.address?.state}</div>
-
-                        <div className="flex gap-2">
-                            <button className="transition duration-300 ease-in-out bg-blue-600 hover:bg-blue-500 px-4 text-gray-100 py-2 rounded-full text-sm mt-3 font-semibold">
-                                <i className="fa-solid fa-user-plus mr-2"></i>
-                                Añadir a mis amigos
-                            </button>
-                            <button className="transition duration-300 ease-in-out bg-gray-600 hover:bg-gray-500 px-4 py-2 text-gray-100 rounded-full text-sm mt-3 font-semibold">
-                                <i className="fa-solid fa-paper-plane mr-2"></i>
-                                Enviar mensaje
-                            </button>
-                            <button className="transition duration-300 ease-in-out bg-gray-600 hover:bg-gray-500 px-4 py-2 text-gray-100 rounded-full text-sm mt-3 font-semibold">
-                                <i className="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                        </div>
+        
                     </div>
-                </div>  
-            </div>
-
-                         
-            {/* <div className="flex mt-4 gap-2">
-                            <div className="border px-3 py-2 border border-gray-700 rounded-full text-sm text-gray-400">Fútbol</div>
-                            <div className="border px-3 py-2 border border-gray-700 rounded-full text-sm text-gray-400">Escuchar música</div>
-                            <div className="border px-3 py-2 border border-gray-700 rounded-full text-sm text-gray-400">Estudiar programación</div>
-                        </div> */}
-           <div className="col-span-1 border border-gray-800 px-12 py-12 mt-6 rounded-3xl bg-gray-800 shadow-2xl">
-                <div>
-                    <h2 className="text-white font-semibold text-xl mb-3">Información</h2>
-                    <div className="flex items-center">
-                    <div className="w-6 h-5">
-
-                        <i className="fa-solid fa-cake-candles text-xl text-white"></i>
-                        </div>
-                        <p className="text-gray-300 my-2 ml-2">Nació en <span>{friend?.birthDate}</span></p>
-                    </div>
-                    <div className="flex items-center">
-                    <div className="w-6 h-5">
-
-                        <i className="fa-solid fa-graduation-cap text-white text-xl"></i>                        
-                        </div>
-                        <p className="text-gray-300 my-2 ml-2">Estudió en <span>{friend?.university}</span></p>
-                    </div>
-                    <div className="flex items-center">
-                    <div className="w-6 h-5">
-                        <i className="fa-solid fa-briefcase text-xl text-white"></i>
-
-                        </div>
-                        <p className="text-gray-300 my-2 ml-2">Trabaja en {friend?.company?.name}</p>
-                    </div>
-                    <div className="flex items-center">
-                    <div className="w-6 h-5">
-                        <i className="fa-solid fa-phone text-white text-xl"></i>
-                        </div>
-                        <p className="text-gray-300 my-2 ml-2">{friend?.phone}</p>
+        
+                    <div className="md:col-span-2 col-span-3 border border-gray-700 px-12 py-6 rounded-xl bg-gray-800 shadow-2xl">
+                        <div className="text-lg font-semibold">Publicaciones</div>
                     </div>
                 </div>
-           </div>
-        </div>
+                : <div className="text-gray-400 mx-auto mt-6 animate-pulse">Cargando...</div>
+            }
+        </>
+       
     )
 }
 
