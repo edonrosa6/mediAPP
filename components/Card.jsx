@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 import { successfullMessage } from "./Popup";
 import { useState } from "react";
 

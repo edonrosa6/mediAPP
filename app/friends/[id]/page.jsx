@@ -8,11 +8,13 @@ import ProfilePicture from "@/components/ProfilePicture";
 
 import moment from "moment";
 import "moment/locale/es";
+import Modal from "@/components/Modal";
 
 function ProfileDetails({params}) {
     const [friend, setFriend] = useState({});
     const [birthDate, setBirthDate] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showImage, setShowImage] = useState(false);
 
     const findUserById = () => {
         const key = Object.keys(usersData.users).find(user => usersData.users[user].id === parseInt(params.id))
@@ -25,22 +27,29 @@ function ProfileDetails({params}) {
         setLoading(false);
     }, [])
 
+    const showModal = () => {
+        setShowImage((prev) => !prev);
+    }
+
     return (
 
         <>
             {
                 !loading ?
                 <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    {
+                        showImage ? <Modal showModalImage={showModal} user={friend} /> : null
+                    }
                     <div className="col-span-3 border border-gray-700 mt-6 pb-12 rounded-xl shadow-2xl bg-gray-800">
                         <div>
                             <div className="bg-gray-700 h-[12rem] w-full rounded-t-xl border border-gray-700"></div>
         
                             <div className="px-10 -mt-20">
-                                <div className="mb-3 flex items-start justify-start">
+                                <button onClick={() => {showModal()}}  className="mb-3 flex items-start justify-start">
                                     <div className="rounded-full border-[0.3rem] border-gray-800">
                                         <ProfilePicture width={140} height={140} urlImage={friend.image} backgroundColor="blue" />
                                     </div>
-                                </div>
+                                </button>
                                 <div className="font-semibold text-white text-[1.3rem] text-base">{friend?.firstName} {friend?.lastName}</div>
                                 <div className="-mt-1">{friend?.company?.department}</div>
                                 <div className="mt-1 text-gray-500 text-sm">{friend?.address?.city}{friend?.address?.state ? ", " : ""}{friend?.address?.state}</div>
