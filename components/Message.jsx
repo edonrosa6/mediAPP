@@ -27,11 +27,9 @@ function Message({message}) {
                         <div className="h-[3px] w-[3px] bg-gray-400 rounded-full mx-1"></div>
                         <div className="text-[0.6rem]">{date}</div>
                     </div>
-                    <div className="text-xs text-gray-200">{message.title}</div>
+                    <div className="text-xs text-gray-200 text-left">{message.title}</div>
                 </div>
-                {/* <div className="bg-blue-500 rounded-full w-2 h-2"></div> */}
             </div>
-            <hr className="border-gray-800"></hr>
         </div>
 
 
