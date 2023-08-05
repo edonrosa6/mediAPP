@@ -13,7 +13,7 @@ function PostData({props}) {
     const [likes, setLikes] = useState(props.reactions);
     const [liked, setLiked] = useState(false);
     const [animationPing, setAnimationPing] = useState(false);
-    const date = moment(props.date, "MM-DD-YYYY").startOf("hour").fromNow();
+    const date = moment(props.date, "MM-DD-YYYY").startOf("seconds").fromNow();
 
     useEffect(() => {
         const findUserById = () => {

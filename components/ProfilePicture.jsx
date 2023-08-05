@@ -3,7 +3,6 @@ import Image from "next/image";
 function ProfilePicture({urlImage, width, height, hover, backgroundColor}) {
 
     const bgColor = () => {
-        console.log(backgroundColor)
         return backgroundColor ? backgroundColor + "-500" : "gray-800";
     }
 

@@ -30,8 +30,8 @@ export default function Footer() {
                     </Link>
                 </div>
                 <div>
-                <Link className={pathname === "/profile" ? "text-blue-500" : "text-gray-200"} href="/profile">
-                    <i className="fa-solid fa-user"></i>
+                <Link className={pathname === "/messages" ? "text-blue-500" : "text-gray-200"} href="/profile">
+                    <i className="fa-solid fa-comment-dots"></i>
                     </Link>
                 </div>
                 <div>
