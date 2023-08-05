@@ -10,7 +10,7 @@ import MessageContent from "@/components/MessageContent";
 function Messages() {
     const [messages, setMessages] = useState([]);
     const [messagesUser, setMessagesUser] = useState([]);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [message, setMessage] = useState("");
 
     useEffect(() => { 
@@ -63,7 +63,11 @@ function Messages() {
             </aside>
             <div className="flex flex-col justify-between border rounded-md px-6 py-3 border-gray-800">
 
-                <div>
+                {
+                    user ?
+
+                    <>
+                      <div>
                     {
                         user 
                         ? <MessageTop user={user} />
@@ -82,8 +86,6 @@ function Messages() {
                     
                 </div>
 
-      
-
                 <div className="flex items-center">
                     <div className="w-full">
                         <form className="bg-gray-700 flex items-center rounded-md w-full" 
@@ -99,6 +101,13 @@ function Messages() {
                         
                     </div>
                 </div>
+                    </>
+
+                : <div className="text-center text-sm text-gray-400">Selecciona un mensaje primero.</div>
+
+                }
+
+              
             </div>
             <aside className="hidden md:block border rounded-md px-6 py-3 border-gray-800">
 
