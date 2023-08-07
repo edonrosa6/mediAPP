@@ -23,58 +23,87 @@ function Navigation() {
         findUserById();
   }, [])
   
+    const search = () => {
+        console.log("buscando...");
+    }
 
     return (
-        <header className="sticky top-0 backdrop-blur-sm z-50">
-            <nav className="border-b border-b-gray-900 bg-gradient-to-b from-gray-900">
+        <header className="sticky top-0 backdrop-blur-md z-50">
+            <nav className="border-b border-b-gray-800 bg-gradient-to-b from-gray-900">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-                    <div>
-                        <div className="flex items-center justify-between py-3 md:py-3 md:block">
-                            <Link href="/">
-                                <Image alt="" height={"auto"} width={120} src={Logo} />
-                            </Link>
-                        </div>
-                    </div>
-                    <div>
-                        <div
-                            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-                                navbar ? "block" : "hidden"
-                            }`}
-                        >                        
-
-                            <ul className="items-center justify-center space-y-8 gap-2 md:flex md:space-x-6 md:space-y-0">
-                                <li className={pathname == "/" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
-                                    <Link href="/" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-home fa-xl"></i></Link>
-                                </li>
-                                <li className={pathname == "/messages" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
-                                    <Link href="/messages" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-comment-dots fa-xl"></i></Link>
-                                </li>
-                                <li className={pathname == "/friends" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
-                                    <Link href="/friends" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-users fa-xl"></i></Link>
-                                </li>     
-                                <li className={pathname == "/notifications" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
-                                    <Link href="/notifications" className="block mr-auto text-center ml-auto">
-                                        <div className="flex items-start">
-                                            <div>
-                                                <i className="fa-solid fa-bell fa-xl"></i>
-                                            </div>
-                                            <div className="w-4 h-4 font-semibold text-[10px] bg-red-500 rounded-full text-white">
-                                                {notificationsData.notifications.length}
-                                            </div>
-                                        </div>
+                    <div className='w-full'>
+                        <div className='grid lg:grid-cols-4 gap-3'>
+                            <div className='col-span-1'>
+                                <div className="flex items-center justify-between py-3 md:py-3 md:block">
+                                    <Link href="/">
+                                        <Image alt="" height={"auto"} width={120} src={Logo} />
                                     </Link>
-                                </li>   
-                                <li>
-                                    {
-                                        user ?
-                                            <DropdownMenuProfile user={user} />
-                                        :   <div className="w-12 h-12 bg-gray-800 rounded-full"></div>
-                                    }
-                                </li>   
-                            </ul>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                        
+                            <div className='col-span-2 flex w-full'> 
+                                <form 
+                                    onSubmit={(e) => { 
+                                        e.preventDefault(); 
+                                        search() 
+                                    }} 
+                                    className='flex w-full items-center'
+                                >
+                                    <div className='relative'>
+                                        <span className='inset-x-4 px-4 inset-y-0 left-0 absolute flex items-center text-gray-400'>
+                                            <i className='fa-solid fa-search'></i>
+                                        </span>
+                                    </div>
+                                    <div className='w-full'>
+                                        <input type='text' placeholder='Buscar...' className='focus:border-gray-500 focus:text-gray-200 focus:outline-none w-full py-2 pl-10 pr-4 bg-gray-700 rounded-full'></input>
+                                    </div>
+                                </form>
+                            </div>
 
+                            <div className='col-span-1'>
+                                <div
+                                    className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+                                        navbar ? "block" : "hidden"
+                                    }`}
+                                >                        
+
+                                    <ul className="items-center flex justify-center space-y-8 gap-1 md:flex md:space-x-4 md:space-y-0">
+                                        <li className={pathname == "/" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
+                                            <Link href="/" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-home fa-lg"></i></Link>
+                                        </li>
+                                        <li className={pathname == "/messages" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
+                                            <Link href="/messages" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-comment-dots fa-lg"></i></Link>
+                                        </li>
+                                        <li className={pathname == "/friends" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
+                                            <Link href="/friends" className="block mr-auto text-center ml-auto"><i className="fa-solid fa-users fa-lg"></i></Link>
+                                        </li>     
+                                        <li className={pathname == "/notifications" ? "text-blue-500" : "text-gray-600 hover:text-blue-500"}>
+                                            <Link href="/notifications" className="block mr-auto text-center ml-auto">
+                                                <div className="flex items-start">
+                                                    <div>
+                                                        <i className="fa-solid fa-bell fa-lg"></i>
+                                                    </div>
+                                                    <div className="w-4 h-4 font-semibold text-[10px] bg-red-500 rounded-full text-white">
+                                                        {notificationsData.notifications.length}
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </li>   
+                                        <li>
+                                            {
+                                                user ?
+                                                    <DropdownMenuProfile user={user} />
+                                                :   <div className="w-12 h-12 bg-gray-800 rounded-full"></div>
+                                            }
+                                        </li>   
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
                 </div>
             </nav>
         </header>
