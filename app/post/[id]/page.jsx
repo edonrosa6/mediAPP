@@ -1,5 +1,5 @@
 "use client"
-import Button from "@/components/Button";
+import {Button} from "@mui/material";
 import Comment from "@/components/Comment";
 import Image from "next/image";
 import usersData from "../../data/users.json";
@@ -18,6 +18,7 @@ function DetailsPost({params}) {
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [animationPing, setAnimationPing] = useState(false);
+    const [disabledButton, setDisabledButton] = useState(true);
 
     useEffect(() => {
         getPostById();
@@ -69,6 +70,7 @@ function DetailsPost({params}) {
             tmp.unshift(req);
             setFilterComments([...tmp]);
             setComment("");
+            setDisabledButton(true);
         }, 250);
     }
 
@@ -85,6 +87,17 @@ function DetailsPost({params}) {
             setLikes(likes - 1);
             setLiked(false);
         }
+    }
+
+    const changeComment = (value) => {
+        setComment(value);
+
+        if(!value || value.trim().length === 0) {
+            setDisabledButton(true);
+            return;
+        }
+
+        setDisabledButton(false);
     }
     
     return (
@@ -130,8 +143,17 @@ function DetailsPost({params}) {
                     e.preventDefault();
                     sendComment();
                 }}>
-                    <textarea required value={comment} onChange={(e) => setComment(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Comenta algo..."></textarea>
-                    <Button title="Comentar" iconName="fa-comment" />
+                    <textarea required value={comment} onChange={(e) => changeComment(e.target.value)} rows="5" className="focus:border-gray-500 focus:text-gray-200 focus:outline-none block p-2.5 w-full text-sm text-gray-500 bg-gray-800 rounded-lg border border-gray-600" placeholder="Comenta algo..."></textarea>
+                    <div className="text-right mt-3">
+                        <Button 
+                            type="submit"
+                            disabled={disabledButton}
+                            variant="contained"
+                            endIcon={<i className="fa-comment fa-solid"></i>}
+                        >
+                            Comentar
+                        </Button>
+                    </div>
                 </form>
             </div>
 

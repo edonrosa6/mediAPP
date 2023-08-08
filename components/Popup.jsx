@@ -12,6 +12,6 @@ export const successfullMessage = (title) => {
       customClass: {
         title: "text-white",
       },
-      background: "#111827"
+      background: "#111111"
     })
 }
