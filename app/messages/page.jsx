@@ -25,7 +25,6 @@ function Messages() {
     const getDataMessage = (message) => {
         const key = Object.keys(usersData.users).find(user => usersData.users[user].id === message.userId)
         setUser(usersData.users[key]);
-
         setMessagesUser(messagesData.messages.filter(x => x.userId === usersData.users[key].id));
     }
 
@@ -43,8 +42,6 @@ function Messages() {
         setMessagesUser((prev) => [...messagesUser, req]);
         setMessage("");
     }
-
-      
 
     return (
         <div className="w-full max-w-7xl grid md:grid-cols-3 h-[89vh] gap-6 my-4">
@@ -109,7 +106,7 @@ function Messages() {
 
               
             </div>
-            <aside className="hidden md:block border rounded-md px-6 py-3 border-gray-800">
+            <aside className="hidden md:block px-6 py-3">
 
             </aside>
         </div>
